@@ -44,7 +44,7 @@ import java.util.Map;
                    """
         ),
         @Example(
-            title = "Get incidents using OAuth.",
+            title = "Get incidents using OAuth and dynamic params.",
             full = true,
             code = """
                    id: servicenow_get
@@ -59,6 +59,11 @@ import java.util.Map;
                        clientId: "my_registered_kestra_application_client_id"
                        clientSecret: "my_registered_kestra_application_client_secret"
                        table: incident
+                       params:
+                         sysparm_query: "active=true^priority=1^ORDERBYDESCnumber"
+                         sysparm_fields: "number,short_description,caller_id.name"
+                         sysparm_limit: "100"
+                         sysparm_display_value: "true"
                    """
         )
     }
@@ -74,8 +79,11 @@ public class Get extends AbstractServiceNow implements RunnableTask<Get.Output> 
     public Get.Output run(RunContext runContext) throws Exception {
         Logger logger = runContext.logger();
 
+        String base = baseUri(runContext) + "api/now/table/" + runContext.render(this.table).as(String.class).orElseThrow();
+        String urlWithParams = appendQueryParams(runContext, base, null);
+
         HttpRequest.HttpRequestBuilder requestBuilder = HttpRequest.builder()
-            .uri(URI.create(baseUri(runContext) + "api/now/table/" + runContext.render(this.table).as(String.class).orElseThrow()))
+            .uri(URI.create(urlWithParams))
             .method("GET");
 
         HttpResponse<GetResult> response = this.request(runContext, requestBuilder, GetResult.class);

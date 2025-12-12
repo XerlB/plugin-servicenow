@@ -20,6 +20,8 @@ import lombok.experimental.SuperBuilder;
 
 import java.io.IOException;
 import java.net.URI;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Objects;
 
@@ -62,6 +64,13 @@ public abstract class AbstractServiceNow extends Task {
 
     @Schema(title = "The HTTP client configuration.")
     protected HttpConfiguration options;
+
+    @Schema(
+        title = "Generic query parameters appended as `?key=value` pairs.",
+        description = "Intended for ServiceNow Table API endpoints (e.g., `sysparm_query`, `sysparm_fields`, `sysparm_limit`, `sysparm_display_value`). " +
+                      "Values support templating. Iterable values emit repeated keys."
+    )
+    protected Property<Map<String, Object>> params;
 
     @Getter(AccessLevel.NONE)
     private transient String token;
@@ -169,4 +178,45 @@ public abstract class AbstractServiceNow extends Task {
         }
     }
 
+    protected String appendQueryParams(RunContext runContext,
+        String baseUrl,
+        Map<String, Object> extraParams) throws IllegalVariableEvaluationException {
+        StringBuilder url = new StringBuilder(baseUrl);
+        boolean first = !baseUrl.contains("?");
+        if (this.params != null) {
+            Map<String, Object> map = runContext.render(this.params).asMap(String.class, Object.class);
+            first = appendParams(url, runContext, map, first);
+        }
+            if (extraParams != null && !extraParams.isEmpty()) {
+            first = appendParams(url, runContext, extraParams, first);
+        }
+        return url.toString();
+    }
+    private boolean appendParams(StringBuilder url,
+                                 RunContext runContext,
+                                 Map<String, Object> map,
+                                 boolean first) throws IllegalVariableEvaluationException {
+
+        for (Map.Entry<String, Object> e : map.entrySet()) {
+            String key = runContext.render(e.getKey());
+            Object raw = e.getValue();
+
+            if (raw instanceof Iterable<?> it) {
+                for (Object item : it) {
+                    first = appendQuery(url, first, key, runContext.render(String.valueOf(item)));
+                }
+            } else {
+                first = appendQuery(url, first, key, runContext.render(String.valueOf(raw)));
+            }
+        }
+        return first;
+    }
+
+    private boolean appendQuery(StringBuilder url, boolean first, String key, String value) {
+        url.append(first ? '?' : '&')
+           .append(URLEncoder.encode(key, StandardCharsets.UTF_8))
+           .append('=')
+           .append(URLEncoder.encode(value, StandardCharsets.UTF_8));
+        return false;
+    }
 }
