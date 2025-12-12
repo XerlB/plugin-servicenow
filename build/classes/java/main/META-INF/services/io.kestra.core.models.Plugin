@@ -1,4 +1,4 @@
-io.kestra.plugin.servicenow.Delete
-io.kestra.plugin.servicenow.Get
-io.kestra.plugin.servicenow.Post
-io.kestra.plugin.servicenow.Update
+io.capgemini.plugin.servicenow.Delete
+io.capgemini.plugin.servicenow.Get
+io.capgemini.plugin.servicenow.Post
+io.capgemini.plugin.servicenow.Update

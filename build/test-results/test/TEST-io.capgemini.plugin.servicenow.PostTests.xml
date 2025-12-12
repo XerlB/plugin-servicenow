@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.capgemini.plugin.servicenow.PostTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-12-12T13:48:01.944Z" hostname="DESKTOP-GKTRN31" time="0.074">
+  <properties/>
+  <testcase name="run(WireMockRuntimeInfo)" classname="io.capgemini.plugin.servicenow.PostTests" time="0.074"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[14:48:01.751 ?[31mWARN ?[0;39m ?[35mTest worker ?[0;39m ?[36mo.e.jetty.util.DeprecationWarning?[0;39m Using @Deprecated Class org.eclipse.jetty.ee10.servlets.CrossOriginFilter
+]]></system-err>
+</testsuite>
