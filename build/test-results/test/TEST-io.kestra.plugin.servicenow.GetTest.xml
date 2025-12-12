@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.kestra.plugin.servicenow.GetTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-12-12T10:53:02.043Z" hostname="DESKTOP-GKTRN31" time="0.146">
+  <properties/>
+  <testcase name="run(WireMockRuntimeInfo)" classname="io.kestra.plugin.servicenow.GetTest" time="0.146"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[11:53:02.556 ?[31mWARN ?[0;39m ?[35mTest worker ?[0;39m ?[36mo.e.jetty.util.DeprecationWarning?[0;39m Using @Deprecated Class org.eclipse.jetty.ee10.servlets.CrossOriginFilter
+]]></system-err>
+</testsuite>

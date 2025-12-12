@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+X-Kestra-Name: plugin-servicenow
+X-Kestra-Title: ServiceNow
+X-Kestra-Group: io.kestra.plugin.servicenow
+X-Kestra-Description: Automate ServiceNow tasks with Kestra data orchest
+ ration.
+X-Kestra-Version: 1.1.1-SNAPSHOT
+

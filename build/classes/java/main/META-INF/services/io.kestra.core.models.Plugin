@@ -1,0 +1,4 @@
+io.kestra.plugin.servicenow.Delete
+io.kestra.plugin.servicenow.Get
+io.kestra.plugin.servicenow.Post
+io.kestra.plugin.servicenow.Update
