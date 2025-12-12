@@ -1,4 +1,4 @@
-package io.kestra.plugin.servicenow;
+package io.capgemini.plugin.servicenow;
 
 import io.kestra.core.http.HttpRequest;
 import io.kestra.core.http.HttpResponse;

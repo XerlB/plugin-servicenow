@@ -1,4 +1,4 @@
-package io.kestra.plugin.servicenow;
+package io.capgemini.plugin.servicenow;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;

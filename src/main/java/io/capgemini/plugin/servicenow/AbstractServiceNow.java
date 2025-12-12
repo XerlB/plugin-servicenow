@@ -1,4 +1,4 @@
-package io.kestra.plugin.servicenow;
+package io.capgemini.plugin.servicenow;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

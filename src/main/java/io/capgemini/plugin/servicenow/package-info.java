@@ -3,6 +3,6 @@
         "ServiceNow allows employees to work the way they want to, not how software dictates they have to.",
     categories = { PluginSubGroup.PluginCategory.ALERTING }
 )
-package io.kestra.plugin.servicenow;
+package io.capgemini.plugin.servicenow;
 
 import io.kestra.core.models.annotations.PluginSubGroup;
